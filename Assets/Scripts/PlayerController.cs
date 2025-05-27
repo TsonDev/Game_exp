@@ -29,13 +29,24 @@ public class PlayerController : MonoBehaviour
     public float fallSpeed = 2f;
     [Header("Projectile")]
     public GameObject projectPrefab;
-    
+    [Header("Health")]
+    float currentHealth;
+    public float maxHealth = 10;
+    public float Health {  get { return currentHealth; } }
+
+
+    // Time invincible
+    public float timeInvincible = 3.0f;
+    bool isInvincible;
+    float timeDamageCoolDown;
 
     // Start is called before the first frame update
     void Start()
     {
        rigid2d = GetComponent<Rigidbody2D>(); 
         animator = GetComponent<Animator>();
+        currentHealth = maxHealth;
+        timeDamageCoolDown=timeInvincible;
     }
 
     // Update is called once per frame
@@ -60,6 +71,13 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
         Gravity();
         animator.SetBool("isJump", !IsCheck());
+
+        if (isInvincible) { 
+            timeDamageCoolDown-=Time.deltaTime;
+            if (timeDamageCoolDown < 0) { 
+            isInvincible = false;
+            }
+        }
 
     }
     public void Move(InputAction.CallbackContext context)
@@ -126,5 +144,19 @@ public class PlayerController : MonoBehaviour
         projectile.Launch(moveDirection, 1000);
         animator.SetTrigger("Attack");
         
-    }
+    }   
+    public void ChangeHealth(int mount)
+    {
+        if (mount < 0)
+        {
+            if (isInvincible)
+            {
+                return;
+            }
+            isInvincible = true;
+            timeDamageCoolDown = timeInvincible;
+        }
+        currentHealth = Mathf.Clamp(currentHealth + mount, 0, maxHealth);
+        Debug.Log(currentHealth);
+    }    
 }
