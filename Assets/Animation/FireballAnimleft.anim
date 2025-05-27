@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NinjaJumpLeft
+  m_Name: FireballAnimleft
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -31,7 +31,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.25
+        time: 0.33333334
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -51,11 +51,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 31aedd535643c2e45b8db6e73e5462bc, type: 3}
+      value: {fileID: 21300000, guid: c8307a4528f7acd4f8fd04dad4794113, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 05523dd334203c74eb69bf114f3b2e69, type: 3}
+      value: {fileID: 21300000, guid: 4c7f18f1274f4084d98959dd8fa5b0f5, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 70a520eb58a0f954cba09b62d47e37f7, type: 3}
+      value: {fileID: 21300000, guid: e12def1f392e15740bf167c1e2512f53, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 05270ae50883518448c456db9c8d82b8, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -87,15 +89,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 31aedd535643c2e45b8db6e73e5462bc, type: 3}
-    - {fileID: 21300000, guid: 05523dd334203c74eb69bf114f3b2e69, type: 3}
-    - {fileID: 21300000, guid: 70a520eb58a0f954cba09b62d47e37f7, type: 3}
+    - {fileID: 21300000, guid: c8307a4528f7acd4f8fd04dad4794113, type: 3}
+    - {fileID: 21300000, guid: 4c7f18f1274f4084d98959dd8fa5b0f5, type: 3}
+    - {fileID: 21300000, guid: e12def1f392e15740bf167c1e2512f53, type: 3}
+    - {fileID: 21300000, guid: 05270ae50883518448c456db9c8d82b8, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -125,7 +128,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.25
+        time: 0.33333334
         value: 0
         inSlope: Infinity
         outSlope: Infinity

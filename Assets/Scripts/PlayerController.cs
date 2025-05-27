@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
 
 
     Rigidbody2D rigid2d;
-   
     Animator animator;
 
     [Header("Movement")]
@@ -28,6 +27,9 @@ public class PlayerController : MonoBehaviour
     public float baseGravity = 2f;
     public float MaxFallSpeed = 18f;
     public float fallSpeed = 2f;
+    [Header("Projectile")]
+    public GameObject projectPrefab;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -110,5 +112,19 @@ public class PlayerController : MonoBehaviour
             rigid2d.gravityScale = baseGravity * fallSpeed;
             rigid2d.velocity = new Vector2(rigid2d.velocity.x, Mathf.Max(rigid2d.velocity.y, -MaxFallSpeed));
         }
+    }
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Performed)
+        {
+            return;
+        }
+        if (moveDirection == Vector2.zero)
+            moveDirection = Vector2.left;
+        GameObject gameObject = Instantiate(projectPrefab,rigid2d.position+Vector2.up*0.3f,Quaternion.identity);
+        Projectile projectile = gameObject.GetComponent<Projectile>();
+        projectile.Launch(moveDirection, 1000);
+        animator.SetTrigger("Attack");
+        
     }
 }
