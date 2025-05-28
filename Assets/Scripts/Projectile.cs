@@ -37,12 +37,13 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       /* Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        if (enemy!=null)
+        EnemyAI enemy = collision.gameObject.GetComponent<EnemyAI>();
+        if (enemy != null)
         {
+
+            enemy.ChangeHealth(-1);
             
-            Destroy(enemy.gameObject,0.5f);
-        }*/
+        }
 
         animator.SetTrigger("Explotion");
         Destroy(gameObject,0.5f);

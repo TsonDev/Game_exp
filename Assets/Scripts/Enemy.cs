@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
                   source.Play();
                 Debug.Log("y");
             }
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 1f);
 
         }
     }
