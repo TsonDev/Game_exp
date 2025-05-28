@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour
     bool isInvincible;
     float timeDamageCoolDown;
 
+    // Health UI
+    PlayerHealthUI pHealthUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +71,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         timeDamageCoolDown=timeInvincible;
+        pHealthUI = GetComponentInChildren<PlayerHealthUI>();
     }
 
     // Update is called once per frame
@@ -266,6 +270,11 @@ public class PlayerController : MonoBehaviour
         }
         currentHealth = Mathf.Clamp(currentHealth + mount, 0, maxHealth);
         Debug.Log(currentHealth);
+
+        if (pHealthUI != null)
+        {
+            pHealthUI.SetHealth(currentHealth, maxHealth);
+        }
     }   
     private void Flip()
     {

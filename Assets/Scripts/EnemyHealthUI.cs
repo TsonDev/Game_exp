@@ -37,6 +37,6 @@ public class EnemyHealthUI : MonoBehaviour
 
     void Start()
     {
-        canvas.enabled = false; // Ban đầu ẩn thanh máu
+        canvas.enabled = true; // Ban đầu ẩn thanh máu
     }
 }

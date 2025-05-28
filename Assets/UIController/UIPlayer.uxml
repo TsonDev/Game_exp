@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<engine:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:engine="UnityEngine.UIElements"
-    xmlns:editor="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
->
-    
-</engine:UXML>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 0; position: absolute; background-image: url(&quot;project://database/Assets/Assets/Legacy%20Collection/Legacy%20Collection/Assets/Packs/Stranger%20Forest/StrangerForestAdd-on/Stranger%20Ville%20Files/Previews/buildings.png?fileID=21300000&amp;guid=998ff3da75bbcc742bb8f098c9580363&amp;type=3#buildings&quot;);">
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement name="HealthBar" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
