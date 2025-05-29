@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="GameOverPanel" style="flex-grow: 1; background-color: rgba(228, 43, 43, 0); background-image: none; align-items: center; justify-content: center; color: rgb(56, 56, 56); -unity-background-image-tint-color: rgb(128, 65, 65);">
+        <ui:Label tabindex="-1" text="Game Over" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 198px; height: 34px; position: relative; top: auto; left: -8px; font-size: 40px; -unity-font-style: bold; -unity-font: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;); color: rgb(255, 0, 0); right: auto; -unity-background-scale-mode: stretch-to-fill;" />
+        <ui:Button text="Play again" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayAgain" style="position: relative; top: 32px; left: auto; -unity-font-style: bold; -unity-background-scale-mode: stretch-to-fill; width: 13%; height: 14%;" />
+    </ui:VisualElement>
+</ui:UXML>
