@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigid2d;
     Animator animator;
     bool isFaceRight = true;
- 
+    [Header("UI")]
+   UIGameover uIGameover;
 
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         timeDamageCoolDown=timeInvincible;
         pHealthUI = GetComponentInChildren<PlayerHealthUI>();
+        uIGameover = FindObjectOfType<UIGameover>();
     }
 
     // Update is called once per frame
@@ -274,6 +276,12 @@ public class PlayerController : MonoBehaviour
         if (pHealthUI != null)
         {
             pHealthUI.SetHealth(currentHealth, maxHealth);
+        }
+        if(currentHealth <= 0)
+        {
+            currentHealth = 0;
+            uIGameover.ShowGameOver();
+            Time.timeScale = 0f;
         }
     }   
     private void Flip()
