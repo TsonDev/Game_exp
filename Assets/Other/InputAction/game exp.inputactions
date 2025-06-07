@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Attack1",
+                    "type": "Button",
+                    "id": "e2adba4c-4b6b-4c5c-830a-53e3321cad28",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -190,12 +199,23 @@
                 },
                 {
                     "name": "",
-                    "id": "efbc249b-ecd0-4e03-9765-2d145d12e488",
-                    "path": "<Mouse>/leftButton",
+                    "id": "79a911b6-c1ca-449e-a6cb-183ff08813aa",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "Attack1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e78cfff5-71a6-4d54-af53-3b09d639ef12",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

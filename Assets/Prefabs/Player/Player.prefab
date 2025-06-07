@@ -393,6 +393,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   MaxWallSpeed: 2
+  wallJumpPower: {x: 5, y: 10}
   projectPrefab: {fileID: 3152946123876210589, guid: d07e0e0e0b1ea1843bd8946c69416370, type: 3}
   maxHealth: 10
   timeInvincible: 3

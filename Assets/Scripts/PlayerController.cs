@@ -54,7 +54,22 @@ public class PlayerController : MonoBehaviour
     [Header("Health")]
     float currentHealth;
     public float maxHealth = 10;
-    public float Health {  get { return currentHealth; } }
+    public float Health {  get { return currentHealth; } } 
+    [Header("Mana")]
+    public float costMana = 15;
+    float currentMana;
+    public float maxMana = 100;
+    public float Mana {  get { return currentMana; } }
+
+    [Header("Attack")]
+    public Transform attackPoint; // Kéo một Empty GameObject vào đây, đặt trước mặt nhân vật
+    public float attackRange = 0.5f;
+    public int attackDamage = 1;
+    public LayerMask enemyLayers;
+    public float cooldownAttack = 1;
+    private float cooldownAttackTimer;
+    bool isCoolDownAttack = false;
+
 
 
     // Time invincible
@@ -71,9 +86,11 @@ public class PlayerController : MonoBehaviour
        rigid2d = GetComponent<Rigidbody2D>(); 
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
+        currentMana = maxMana;
         timeDamageCoolDown=timeInvincible;
         pHealthUI = GetComponentInChildren<PlayerHealthUI>();
         uIGameover = FindObjectOfType<UIGameover>();
+       
     }
 
     // Update is called once per frame
@@ -132,6 +149,15 @@ public class PlayerController : MonoBehaviour
             isInvincible = false;
             }
         }
+        if (isCoolDownAttack)
+        {
+            cooldownAttackTimer -= Time.deltaTime;
+            if (cooldownAttackTimer < 0)
+            {
+                isCoolDownAttack = false;
+            }
+        }
+       
 
     }
     public void Move(InputAction.CallbackContext context)
@@ -147,6 +173,7 @@ public class PlayerController : MonoBehaviour
             {
                 rigid2d.velocity = new Vector2(rigid2d.velocity.x, jumpPower);
                 JumpRemaining--;
+
             }
             else if (context.canceled)
             {
@@ -251,14 +278,62 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        if (currentMana < 15)
+        {
+            Debug.Log("Ko du mana");
+            return;
+        }
+        if (isCoolDownAttack)
+        {
+            return;
+        }
+        currentMana -= costMana;
         if (moveDirection == Vector2.zero)
             moveDirection = Vector2.left;
         GameObject gameObject = Instantiate(projectPrefab,rigid2d.position+Vector2.up*0.3f,Quaternion.identity);
         Projectile projectile = gameObject.GetComponent<Projectile>();
         projectile.Launch(moveDirection, 1000);
-       /* animator.SetTrigger("Attack");*/
         
+        UIHandler.instance.SetManaValue(currentMana / (float)maxMana);
+        animator.SetTrigger("Attack");
+        cooldownAttackTimer = cooldownAttack;
+        isCoolDownAttack = true;
+
     }   
+    public void Attack1(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Performed)
+        {
+            return;
+        }
+        if (moveDirection == Vector2.zero)
+            moveDirection = Vector2.left;
+        /*GameObject gameObject = Instantiate(projectPrefab,rigid2d.position+Vector2.up*0.3f,Quaternion.identity);
+        Projectile projectile = gameObject.GetComponent<Projectile>();
+        projectile.Launch(moveDirection, 1000);*/
+        MeleeAttack();
+      
+
+    }
+    public void MeleeAttack()
+    {
+        // Phát hiện tất cả enemy trong phạm vi tấn công
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+            if (enemyAI != null)
+            {
+                enemyAI.ChangeHealth(-attackDamage);
+            }
+        }
+
+        // Kích hoạt animation đánh
+        animator.SetTrigger("Attack1");
+    }
+
+
     public void ChangeHealth(int mount)
     {
         if (mount < 0)
@@ -283,6 +358,7 @@ public class PlayerController : MonoBehaviour
             uIGameover.ShowGameOver();
             Time.timeScale = 0f;
         }
+        UIHandler.instance.SetHealthValue(currentHealth/(float)maxHealth);
     }   
     private void Flip()
     {
@@ -306,4 +382,5 @@ public class PlayerController : MonoBehaviour
             transform.localScale = ls;
         }
     }
+
 }

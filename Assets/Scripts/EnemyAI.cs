@@ -106,6 +106,8 @@ public class EnemyAI : MonoBehaviour
         if (player != null)
         {
             player.ChangeHealth(-1);
+
+           
         }
     }
     public void ChangeHealth(float amount)
@@ -125,6 +127,11 @@ public class EnemyAI : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             Destroy(gameObject, 1f);
+        }
+        if (source != null)
+        {
+            source.Play();
+            Debug.Log("y");
         }
     }
 
