@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Header" style="flex-grow: 1; background-image: none; position: relative; height: 144px; width: auto; top: 0; left: 0;">
+        <ui:VisualElement style="flex-grow: 1; -unity-background-image-tint-color: rgb(244, 255, 0); background-image: url(&quot;project://database/Assets/Assets/MyAsset/VSCL_Header.png?fileID=21300000&amp;guid=c43db3e37f01b6e4b95d6a574bede438&amp;type=3#VSCL_Header&quot;); height: 149px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="Background" style="flex-grow: 1; -unity-background-scale-mode: scale-to-fit; width: 24%; height: 132px; left: 41%; right: 50%; bottom: 14px; top: -33px;">
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_start" style="background-image: url(&quot;project://database/Assets/Assets/MyAsset/Space_Game_GUI_PNG/PNG/Main_Menu/Start_BTN.png?fileID=21300000&amp;guid=07b3d18f260a0f8439aa927e1e3b5776&amp;type=3#Start_BTN&quot;); height: 63px; width: 214px;" />
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_map" style="background-image: url(&quot;project://database/Assets/Assets/MyAsset/Space_Game_GUI_PNG/PNG/Main_Menu/Map_BTN.png?fileID=21300000&amp;guid=36a374beaaaefe74dbd69ccb9544a14e&amp;type=3#Map_BTN&quot;); height: 62px; width: 212px;" />
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_exit" style="background-image: url(&quot;project://database/Assets/Assets/MyAsset/Space_Game_GUI_PNG/PNG/Main_Menu/Exit_BTN.png?fileID=21300000&amp;guid=307233fefc8bf0543b983aedeb4aaac2&amp;type=3#Exit_BTN&quot;); height: 62px; width: 215px;" />
+    </ui:VisualElement>
+</ui:UXML>

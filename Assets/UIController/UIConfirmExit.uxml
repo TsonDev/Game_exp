@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="ConfirmExit" style="flex-grow: 1; -unity-background-scale-mode: stretch-to-fill; width: 782px; height: 226px; left: 185px; top: 83px; position: absolute;">
+        <ui:VisualElement name="ConfirmExitBackground" style="flex-grow: 1; -unity-background-scale-mode: stretch-to-fill; background-image: url(&quot;project://database/Assets/Assets/MyAsset/tinyRPG_dragonRegaliaGUI_v1_0/Message.png?fileID=21300000&amp;guid=7bcd1fc0c77bcd7449530d2579aacd72&amp;type=3#Message&quot;); width: 835px; height: 0;" />
+    </ui:VisualElement>
+    <ui:Label tabindex="-1" text="Are you sure you want to quit?" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 44px; color: rgb(255, 255, 255); position: absolute; top: 118px; left: 285px;" />
+    <ui:VisualElement name="btn" style="flex-grow: 1; flex-direction: row; position: absolute; top: 207px; left: 764px;">
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_no" style="background-image: url(&quot;project://database/Assets/Assets/MyAsset/Space_Game_GUI_PNG/PNG/Buttons/BTNs_Active/Close_BTN.png?fileID=21300000&amp;guid=0fa4fdc788cdb304c9c9cc266e012504&amp;type=3#Close_BTN&quot;); width: 60px; height: 60px;" />
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_yes" style="width: 60px; background-image: url(&quot;project://database/Assets/Assets/MyAsset/Space_Game_GUI_PNG/PNG/Buttons/BTNs_Active/Ok_BTN.png?fileID=21300000&amp;guid=b8b863dd41a02f542b028f4f93208a6b&amp;type=3#Ok_BTN&quot;); height: 60px;" />
+    </ui:VisualElement>
+</ui:UXML>
