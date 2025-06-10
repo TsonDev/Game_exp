@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &308307578
 Transform:
   m_ObjectHideFlags: 0
@@ -526,7 +526,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logo: {fileID: 1159364107}
   uiGameStart: {fileID: 1201749887}
-  uiConfirmExit: {fileID: 308307577}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

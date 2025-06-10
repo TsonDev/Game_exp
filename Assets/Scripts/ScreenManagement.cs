@@ -31,6 +31,9 @@ public class ScreenManagement : MonoBehaviour
             string nextSceneName = parts[0] + " " + nextLevel;
 
             Debug.Log("Chuyển sang scene: " + nextSceneName);
+            PlayerPrefs.SetInt("UnlockedLevel", nextLevel);
+            PlayerPrefs.Save();
+
             SceneManager.LoadScene(nextSceneName);
         }
         else

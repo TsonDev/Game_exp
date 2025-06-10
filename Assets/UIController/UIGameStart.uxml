@@ -7,4 +7,11 @@
         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_map" style="background-image: url(&quot;project://database/Assets/Assets/MyAsset/Space_Game_GUI_PNG/PNG/Main_Menu/Map_BTN.png?fileID=21300000&amp;guid=36a374beaaaefe74dbd69ccb9544a14e&amp;type=3#Map_BTN&quot;); height: 62px; width: 212px;" />
         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_exit" style="background-image: url(&quot;project://database/Assets/Assets/MyAsset/Space_Game_GUI_PNG/PNG/Main_Menu/Exit_BTN.png?fileID=21300000&amp;guid=307233fefc8bf0543b983aedeb4aaac2&amp;type=3#Exit_BTN&quot;); height: 62px; width: 215px;" />
     </ui:VisualElement>
+    <ui:VisualElement name="ConfirmExit" style="flex-grow: 1; position: absolute; top: 260px; left: 204px; background-image: url(&quot;project://database/Assets/Assets/MyAsset/tinyRPG_dragonRegaliaGUI_v1_0/Message.png?fileID=21300000&amp;guid=7bcd1fc0c77bcd7449530d2579aacd72&amp;type=3#Message&quot;); width: 64%; height: 139px;">
+        <ui:Label tabindex="-1" text="Are you sure want to exit?" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 33px; color: rgb(255, 255, 255); left: 81px; width: 412px;" />
+        <ui:VisualElement name="btn" style="flex-grow: 1; flex-direction: row-reverse; left: -77px;">
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_yes" style="background-image: url(&quot;project://database/Assets/Assets/MyAsset/Space_Game_GUI_PNG/PNG/Buttons/BTNs_Active/Ok_BTN.png?fileID=21300000&amp;guid=b8b863dd41a02f542b028f4f93208a6b&amp;type=3#Ok_BTN&quot;); width: 60px; height: 60px;" />
+            <ui:Button text="&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_no" style="background-image: url(&quot;project://database/Assets/Assets/MyAsset/Space_Game_GUI_PNG/PNG/Buttons/BTNs_Active/Close_BTN.png?fileID=21300000&amp;guid=0fa4fdc788cdb304c9c9cc266e012504&amp;type=3#Close_BTN&quot;); width: 60px; height: 60px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
