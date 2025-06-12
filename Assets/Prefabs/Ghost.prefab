@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5571457716113794811}
   - component: {fileID: 7210663475558063142}
   - component: {fileID: 7840038438317981623}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -200,6 +200,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  maxHealth: 5
 --- !u!82 &7840038438317981623
 AudioSource:
   m_ObjectHideFlags: 0

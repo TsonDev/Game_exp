@@ -1,7 +1,14 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 0; position: absolute; background-image: url(&quot;project://database/Assets/Assets/Legacy%20Collection/Legacy%20Collection/Assets/Packs/Stranger%20Forest/StrangerForestAdd-on/Stranger%20Ville%20Files/Previews/buildings.png?fileID=21300000&amp;guid=998ff3da75bbcc742bb8f098c9580363&amp;type=3#buildings&quot;);">
-        <ui:VisualElement style="flex-grow: 1;">
-            <ui:VisualElement name="HealthBar" style="flex-grow: 1;" />
+    <ui:VisualElement name="HealthBarBackground" style="flex-grow: 0; position: absolute; background-image: url(&quot;project://database/Assets/Assets/MyAsset/health/BHP_base.png?fileID=21300000&amp;guid=3070c713eb5cff743b91501ed3e484ff&amp;type=3#BHP_base&quot;); height: 124px; width: 425px; -unity-background-image-tint-color: rgb(122, 122, 122);">
+        <ui:VisualElement name="StackSkillContainer" style="flex-grow: 1; position: absolute; height: 19px; width: 266px; top: 93px; left: 70px;">
+            <ui:VisualElement name="StackSkillBar" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Assets/MyAsset/health/BHP_yellow.png?fileID=21300000&amp;guid=e69a6e421feea1641853b8efed1ca03f&amp;type=3#BHP_yellow&quot;);" />
         </ui:VisualElement>
+        <ui:VisualElement name="HealthBarContainer" style="flex-grow: 1; position: absolute; height: 47px; width: 340px; top: 22px; left: 79px;">
+            <ui:VisualElement name="HealthBar" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Assets/MyAsset/health/BHP_red.png?fileID=21300000&amp;guid=60d43819995a8654c822367b26029963&amp;type=3#BHP_red&quot;);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ManaBarContainer" style="flex-grow: 1; position: absolute; height: 35px; width: 286px; top: 61px; left: 81px;">
+            <ui:VisualElement name="ManaBar" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Assets/MyAsset/health/BHP_blue.png?fileID=21300000&amp;guid=e143f9ffea447774db861698480216a1&amp;type=3#BHP_blue&quot;);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="CharacterPortrait" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Assets/Ninja%20Files/Ninja%20PNG/Parts/Head.PNG?fileID=21300000&amp;guid=2cc15b85208ce624cbbd22d2ae5ccef7&amp;type=3#Head&quot;); height: 101px; width: 117px; position: absolute; top: 11px; left: 4px;" />
     </ui:VisualElement>
 </ui:UXML>

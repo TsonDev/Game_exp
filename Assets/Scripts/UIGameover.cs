@@ -8,6 +8,8 @@ public class UIGameover : MonoBehaviour
 {
     private VisualElement gameOverPanel;
     private Button retryButton;
+    private Button MenuButton;
+    private Button SettingButton;
     
     private void OnEnable()
     {
@@ -15,12 +17,18 @@ public class UIGameover : MonoBehaviour
 
         gameOverPanel = root.Q<VisualElement>("GameOverPanel");
         retryButton = root.Q<Button>("PlayAgain"); // Đặt name="retry-button" trong UI Builder
+        MenuButton = root.Q<Button>("Menu"); 
      
 
         retryButton.clicked += () =>
         {
             Time.timeScale = 1f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        };
+        MenuButton.clicked += () =>
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("StartScreen");
         };
 
         HideGameOver();
