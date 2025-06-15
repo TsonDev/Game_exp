@@ -327,6 +327,11 @@ public class PlayerController : MonoBehaviour
             {
                 enemyAI.ChangeHealth(-attackDamage);
             }
+            Enemy enemy1 = enemy.GetComponent<Enemy>();
+            if(enemy1)
+            {
+                Destroy(enemy1.gameObject); 
+            }
         }
 
         // Kích hoạt animation đánh
