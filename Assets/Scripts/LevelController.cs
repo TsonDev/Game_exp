@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
     
-
+    
     private Button levelbtn1;
     private Button levelbtn2;
     private Button levelbtn3;
     private Button levelbtn4;
+    private Button ExitLevelMap;
 
     private void OnEnable()
     {
@@ -20,6 +21,7 @@ public class LevelController : MonoBehaviour
         levelbtn2 = root.Q<Button>("level2_btn");
         levelbtn3 = root.Q<Button>("level3_btn");
         levelbtn4 = root.Q<Button>("level4_btn");
+        ExitLevelMap = root.Q<Button>("exit_btn");
 
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1); // mặc định mở level 1
 
@@ -27,6 +29,10 @@ public class LevelController : MonoBehaviour
         SetupLevelButton(levelbtn2, 2, unlockedLevel);
         SetupLevelButton(levelbtn3, 3, unlockedLevel);
         SetupLevelButton(levelbtn4, 4, unlockedLevel);
+        ExitLevelMap.clicked += () =>
+        {
+            ExitLevel();
+        };
     }
 
     private void SetupLevelButton(Button btn, int levelIndex, int unlockedLevel)
@@ -45,5 +51,9 @@ public class LevelController : MonoBehaviour
     private void LoadLevel(int levelIndex)
     {
         SceneManager.LoadScene("Level " + levelIndex);
+    }
+    private void ExitLevel()
+    {
+        SceneManager.LoadScene("StartScreen");
     }
 }
