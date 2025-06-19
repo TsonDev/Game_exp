@@ -6,27 +6,32 @@ public class ManagementLevel : MonoBehaviour
     public Transform targetPosition;
     public CinemachineVirtualCamera virtualCam;
     public CinemachineConfiner2D confiner;
-    public PolygonCollider2D newConfinerShape; // Hình vùng mới (nếu level2 dùng confiner khác)
+    public PolygonCollider2D targetConfinerShape;
+    public Transform player;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (!collision.CompareTag("Player")) return;
+
+        // Disable all virtual cameras
+        foreach (var cam in FindObjectsOfType<CinemachineVirtualCamera>())
+            cam.gameObject.SetActive(false);
+
+        // Enable current virtual camera
+        virtualCam.gameObject.SetActive(true);
+        virtualCam.Follow = player;
+
+        // Move player
+        player.position = targetPosition.position;
+
+        // Force camera to move immediately
+        virtualCam.ForceCameraPosition(targetPosition.position, Quaternion.identity);
+
+        // Update confiner
+        if (confiner != null && targetConfinerShape != null)
         {
-            // Dịch chuyển player
-            collision.transform.position = targetPosition.position;
-
-            // Ép camera theo kịp player ngay lập tức
-            if (virtualCam != null)
-            {
-                virtualCam.ForceCameraPosition(targetPosition.position, Quaternion.identity);
-            }
-
-            // Nếu có confiner mới cho Level 2
-            if (confiner != null && newConfinerShape != null)
-            {
-                confiner.m_BoundingShape2D = newConfinerShape;
-                confiner.InvalidateCache(); // RẤT QUAN TRỌNG để cập nhật lại confiner
-            }
+            confiner.m_BoundingShape2D = targetConfinerShape;
+            confiner.InvalidateCache();
         }
     }
 }
