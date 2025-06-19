@@ -323,15 +323,24 @@ public class PlayerController : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+            Enemy enemy1 = enemy.GetComponent<Enemy>();
+            EnemyShooter enemy2 = enemy.GetComponent<EnemyShooter>();
             if (enemyAI != null)
             {
                 enemyAI.ChangeHealth(-attackDamage);
             }
-            Enemy enemy1 = enemy.GetComponent<Enemy>();
-            if(enemy1)
+           
+            else if(enemy1!=null)
             {
                 Destroy(enemy1.gameObject); 
             }
+            else if(enemy2!=null)
+            {
+                Destroy(enemy2.gameObject);
+            }    
+            
+            
+            
         }
 
         // Kích hoạt animation đánh
