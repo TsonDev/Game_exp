@@ -69,11 +69,27 @@ public class PlayerController : MonoBehaviour
     public float cooldownAttack = 1;
     private float cooldownAttackTimer;
     bool isCoolDownAttack = false;
+    
+    [Header("Dash")]
+    public float dashSpeed = 20f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 1f;
+
+    private bool isDashing = false;
+    private bool canDash = true;
+    private float dashCooldownTimer;
+    private Vector2 dashDirection;
+
+    [Header("Dash Stack")]
+    public int maxDashStack = 4;
+    private int currentDashStack;
+    public float dashStackRecoveryTime = 2f; // thời gian hồi 1 stack
+    private float dashStackTimer;
 
 
 
     // Time invincible
-    public float timeInvincible = 3.0f;
+    public float timeInvincible = 3f;
     bool isInvincible;
     float timeDamageCoolDown;
 
@@ -90,7 +106,11 @@ public class PlayerController : MonoBehaviour
         timeDamageCoolDown=timeInvincible;
         pHealthUI = GetComponentInChildren<PlayerHealthUI>();
         uIGameover = FindObjectOfType<UIGameover>();
-       
+
+        currentDashStack = maxDashStack;
+        dashStackTimer = 0f;
+
+
     }
 
     // Update is called once per frame
@@ -157,7 +177,21 @@ public class PlayerController : MonoBehaviour
                 isCoolDownAttack = false;
             }
         }
-       
+        // Hồi dash stack
+        //if (currentDashStack < maxDashStack)
+        //{
+        //    dashStackTimer += Time.deltaTime;
+        //    if (dashStackTimer >= dashStackRecoveryTime)
+        //    {
+        //        currentDashStack++;
+        //        dashStackTimer = 0f;
+
+        //        // Cập nhật UI sau khi hồi
+        //        UIHandler.instance.SetStackValue((float)currentDashStack / maxDashStack);
+        //    }
+        //}
+
+
 
     }
     public void Move(InputAction.CallbackContext context)
@@ -346,6 +380,51 @@ public class PlayerController : MonoBehaviour
         // Kích hoạt animation đánh
         animator.SetTrigger("Attack1");
     }
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        Dash(context);
+    }
+
+
+public void Dash(InputAction.CallbackContext context)
+{
+    if (context.phase != InputActionPhase.Performed || isDashing || currentDashStack <= 0)
+        return;
+
+    if (moveDirection == Vector2.zero)
+        moveDirection = isFaceRight ? Vector2.right : Vector2.left;
+
+    currentDashStack--;
+    UIHandler.instance.SetStackValue((float)currentDashStack / maxDashStack); // cập nhật UI
+    StartCoroutine(DashRoutine());
+}
+
+
+    IEnumerator DashRoutine()
+    {
+        isDashing = true;
+        canDash = false;
+        isInvincible = true;
+
+        dashDirection = moveDirection.normalized;
+        float dashEndTime = Time.time + dashDuration;
+
+        animator.SetTrigger("Dash"); // nếu có animation
+
+        while (Time.time < dashEndTime)
+        {
+            rigid2d.velocity = dashDirection * dashSpeed;
+            yield return null;
+        }
+
+        rigid2d.velocity = Vector2.zero;
+        isDashing = false;
+        isInvincible = false;
+
+        // Cooldown
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
 
 
     public void ChangeHealth(int mount)
@@ -396,5 +475,23 @@ public class PlayerController : MonoBehaviour
             transform.localScale = ls;
         }
     }
+    public void RestoreMana(float amount)
+    {
+        currentMana = Mathf.Clamp(currentMana + amount, 0, maxMana);
+        UIHandler.instance.SetManaValue(currentMana / maxMana);
+    }
+    public void AddDashStack(int amount)
+    {
+        currentDashStack = Mathf.Clamp(currentDashStack + amount, 0, maxDashStack);
+        UIHandler.instance.SetStackValue((float)currentDashStack / maxDashStack);
+    }
+    public IEnumerator SpeedBoost(float multiplier, float duration)
+    {
+        float originalSpeed = moveSpeed;
+        moveSpeed *= multiplier;
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalSpeed;
+    }
+
 
 }

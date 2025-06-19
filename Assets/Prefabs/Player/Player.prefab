@@ -376,19 +376,7 @@ MonoBehaviour:
     m_ActionId: 1e35129e-b54b-47d0-9b5e-376d3492c4a1
     m_ActionName: Player/Jump[/Keyboard/upArrow,/Keyboard/w,/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 458144658027728839}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Attack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 459911f2-9490-45f2-a7ae-3dbf4539b927
     m_ActionName: Player/Attack[/Keyboard/c,/Mouse/leftButton]
   - m_PersistentCalls:
@@ -443,7 +431,7 @@ MonoBehaviour:
   MaxWallSpeed: 2
   wallJumpPower: {x: 5, y: 10}
   projectPrefab: {fileID: 3152946123876210589, guid: d07e0e0e0b1ea1843bd8946c69416370, type: 3}
-  maxHealth: 10
+  maxHealth: 2
   costMana: 15
   maxMana: 100
   attackPoint: {fileID: 1963585552195348566}
