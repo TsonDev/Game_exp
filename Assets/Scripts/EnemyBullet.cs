@@ -6,18 +6,21 @@ public class EnemyBu : MonoBehaviour
 {
      public float lifeTime = 3f;
     public int damage = 1;
+    Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         Destroy(gameObject, lifeTime);
+       /* Đạn theo người chơi*/
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+       /* Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             Vector2 velocity = rb.velocity;
             float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
+        }*/
     }
 
 
@@ -30,8 +33,8 @@ public class EnemyBu : MonoBehaviour
         {
             player.ChangeHealth(-damage);
         }
-
-        Destroy(gameObject);
+        animator.SetTrigger("Hit");
+        Destroy(gameObject,1);
     }
 
 }

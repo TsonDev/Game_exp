@@ -19,6 +19,14 @@ public class EnemyShooter : MonoBehaviour
 
     private enum State { Patrol, Attack }
     private State currentState = State.Patrol;
+    [Header("Health")]
+    public float maxHealth=5;
+    float currentHealth;
+    [Header("Audio")]
+    public AudioClip shootSound;
+    private AudioSource audioSource;
+
+
 
     private Animator animator;
 
@@ -31,6 +39,8 @@ public class EnemyShooter : MonoBehaviour
             player = playerObj.transform;
 
         animator = GetComponent<Animator>();
+       currentHealth = maxHealth;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -78,13 +88,20 @@ public class EnemyShooter : MonoBehaviour
     void LookAtPlayer()
     {
         Vector3 scale = transform.localScale;
-        if (player.position.x > transform.position.x)
-            scale.x = Mathf.Abs(scale.x);   // quay phải
-        else
-            scale.x = -Mathf.Abs(scale.x);  // quay trái
+        bool shouldFaceRight = player.position.x > transform.position.x;
 
-        transform.localScale = scale;
+        if (shouldFaceRight && scale.x < 0)
+        {
+            scale.x = Mathf.Abs(scale.x); // quay phải
+            transform.localScale = scale;
+        }
+        else if (!shouldFaceRight && scale.x > 0)
+        {
+            scale.x = -Mathf.Abs(scale.x); // quay trái
+            transform.localScale = scale;
+        }
     }
+
 
     void Attack()
     {
@@ -94,6 +111,9 @@ public class EnemyShooter : MonoBehaviour
         Vector2 shootDir = new Vector2(facingDir, 0f);
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        if (audioSource != null && shootSound != null)
+            audioSource.PlayOneShot(shootSound);
+
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.velocity = shootDir * bulletSpeed;
@@ -106,5 +126,14 @@ public class EnemyShooter : MonoBehaviour
         );
 
         fireCooldown = 1f / fireRate;
+    }
+    public void ChangeHealth(int mout)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + mout, 0f, maxHealth);
+        if (currentHealth <= 0f)
+        {
+            Destroy(gameObject);
+
+        }
     }
 }

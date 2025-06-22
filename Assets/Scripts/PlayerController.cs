@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
 
         currentDashStack = maxDashStack;
         dashStackTimer = 0f;
+       
 
 
     }
@@ -359,9 +360,10 @@ public class PlayerController : MonoBehaviour
             EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
             Enemy enemy1 = enemy.GetComponent<Enemy>();
             EnemyShooter enemy2 = enemy.GetComponent<EnemyShooter>();
+            BossUltimate boss2 = enemy.GetComponent<BossUltimate>();
             if (enemyAI != null)
             {
-                enemyAI.ChangeHealth(-attackDamage);
+                enemyAI.ChangeHealth(-attackDamage);       
             }
            
             else if(enemy1!=null)
@@ -371,10 +373,15 @@ public class PlayerController : MonoBehaviour
             else if(enemy2!=null)
             {
                 Destroy(enemy2.gameObject);
-            }    
-            
-            
-            
+            }
+            else if (boss2 != null)
+            {
+                Debug.Log("Boss bị đánh: " + boss2.name);
+                boss2.ChangeHealth(-attackDamage);
+            }
+
+
+
         }
 
         // Kích hoạt animation đánh

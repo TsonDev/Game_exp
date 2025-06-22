@@ -5,30 +5,52 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
+    [Header("Thông tin NPC")]
+    public string npcName;
+    public Sprite avatar;
+
+    [Header("Dữ liệu thoại")]
+    public TextAsset dialogueFile;
+    private string[] dialogue;
+
+    [Header("UI")]
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText;
-    public string[] dialogue;
-    private int index;
-
     public GameObject contButton;
-    public GameObject pressEText; // 👉 UI hiển thị "Nhấn E để nói chuyện"
+    public GameObject pressEText;
 
+    [Header("UI bổ sung")]
+    public TextMeshProUGUI npcNameText;
+    public Image npcAvatar;
+
+    [Header("Tùy chỉnh")]
     public float wordSpeed = 0.05f;
-    public bool playerIsClose;
 
+    private int index = 0;
+    private bool playerIsClose = false;
     private Coroutine typingCoroutine;
 
     private void Start()
     {
+        if (dialogueFile != null)
+        {
+            dialogue = dialogueFile.text.Split(new[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else
+        {
+            Debug.LogWarning($"[{gameObject.name}] NPC chưa có file thoại.");
+            dialogue = new string[0];
+        }
+
         zeroText();
 
         if (pressEText != null)
-            pressEText.SetActive(false); // Ẩn chữ "Nhấn E" ban đầu
+            pressEText.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E) && playerIsClose)
+        if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
             if (dialoguePanel.activeInHierarchy)
             {
@@ -38,15 +60,26 @@ public class NPC : MonoBehaviour
             {
                 dialoguePanel.SetActive(true);
 
-                // Ẩn chữ "Nhấn E" khi bắt đầu nói chuyện
+                // Gán UI ảnh + tên từ NPC này
+                if (npcNameText != null)
+                    npcNameText.text = npcName;
+
+                if (npcAvatar != null)
+                    npcAvatar.sprite = avatar;
+
                 if (pressEText != null)
                     pressEText.SetActive(false);
+
+                // Gán đúng sự kiện "Tiếp" cho NPC này
+                Button btn = contButton.GetComponent<Button>();
+                btn.onClick.RemoveAllListeners();
+                btn.onClick.AddListener(NextLine);
 
                 typingCoroutine = StartCoroutine(Typing());
             }
         }
 
-        if (dialogueText.text == dialogue[index])
+        if (dialogue.Length > 0 && index < dialogue.Length && dialogueText.text == dialogue[index])
         {
             contButton.SetActive(true);
         }
@@ -55,7 +88,11 @@ public class NPC : MonoBehaviour
     IEnumerator Typing()
     {
         dialogueText.text = "";
-        foreach (char c in dialogue[index].ToCharArray())
+
+        if (dialogue == null || dialogue.Length == 0 || index >= dialogue.Length)
+            yield break;
+
+        foreach (char c in dialogue[index])
         {
             dialogueText.text += c;
             yield return new WaitForSeconds(wordSpeed);
@@ -66,14 +103,19 @@ public class NPC : MonoBehaviour
     {
         contButton.SetActive(false);
 
+        // Nếu đang gõ dở thì hiện nốt luôn
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+            dialogueText.text = dialogue[index];
+            return;
+        }
+
         if (index < dialogue.Length - 1)
         {
             index++;
             dialogueText.text = "";
-
-            if (typingCoroutine != null)
-                StopCoroutine(typingCoroutine);
-
             typingCoroutine = StartCoroutine(Typing());
         }
         else
@@ -84,15 +126,23 @@ public class NPC : MonoBehaviour
 
     public void zeroText()
     {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+
         dialogueText.text = "";
         index = 0;
         dialoguePanel.SetActive(false);
 
-        // Nếu người chơi vẫn còn gần, hiện lại "Nhấn E"
         if (playerIsClose && pressEText != null)
         {
             pressEText.SetActive(true);
         }
+
+        contButton.SetActive(false);
+        contButton.GetComponent<Button>().onClick.RemoveAllListeners(); // Ngăn gọi nhầm NPC cũ
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -101,11 +151,9 @@ public class NPC : MonoBehaviour
         {
             playerIsClose = true;
 
-            // 👉 Khi vào vùng NPC, hiện "Nhấn E"
             if (!dialoguePanel.activeInHierarchy && pressEText != null)
             {
                 pressEText.SetActive(true);
-                Debug.Log("Hiện: Nhấn E để nói chuyện");
             }
         }
     }

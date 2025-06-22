@@ -130,7 +130,7 @@ public class EnemyAI : MonoBehaviour
             if (Random.value <= dropRate)
             {
                 // Offset nhỏ theo chiều X để tách item ra (dựa vào số lượng đã spawn)
-                Vector3 dropPos = transform.position + new Vector3(dropCount * 0.5f, 0, 0);
+                Vector3 dropPos = transform.position + new Vector3(dropCount * 1f, 0, 0);
 
                 GameObject drop = Instantiate(item, dropPos, Quaternion.identity);
                 Debug.Log("Dropped: " + drop.name);
