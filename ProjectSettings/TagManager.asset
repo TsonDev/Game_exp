@@ -28,8 +28,8 @@ TagManager:
   - Test
   - Confiner
   - Enemy
-  - 
-  - 
+  - Bullet
+  - Destructible
   - 
   - 
   - 
@@ -43,14 +43,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 4274685237
-    locked: 0
   - name: Ground
     uniqueID: 1246765967
     locked: 0
   - name: Wall
     uniqueID: 3514906017
+    locked: 0
+  - name: Background
+    uniqueID: 4274685237
     locked: 0
   - name: Player
     uniqueID: 2943702741

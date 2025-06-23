@@ -24,6 +24,14 @@ PrefabInstance:
       propertyPath: m_DrawMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 88ec819e8fc660645a32ac89c26f2394, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 88ec819e8fc660645a32ac89c26f2394, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1351264555
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 88ec819e8fc660645a32ac89c26f2394, type: 3}
       propertyPath: m_LocalScale.x
       value: 19.396227
@@ -135,7 +143,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &4930444493366754341
 BoxCollider2D:
   m_ObjectHideFlags: 0

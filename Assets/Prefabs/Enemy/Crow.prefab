@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 576446938292738637}
   - component: {fileID: 1011732934664219548}
   - component: {fileID: 1920090621657298836}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Crow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     float time = 3f;
     float timeDestroy;
     Animator animator;
+    public int dame;
  
     void Awake()
     {
@@ -37,16 +38,32 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        EnemyAI enemy = collision.gameObject.GetComponent<EnemyAI>();
-        if (enemy != null)
-        {
+        // Nếu đối tượng nằm trong Layer "Enemy"
+        
+            // Gọi hàm ChangeHealth nếu có
+            EnemyAI enemyAI = collision.GetComponent<EnemyAI>();
+            EnemyShooter enemyShoot = collision.GetComponent<EnemyShooter>();
+            BossLv4 bossLv4 = collision.GetComponent<BossLv4>();   
+            if (enemyAI != null)
+            {
+            Debug.Log("Gay dame ai");
+                enemyAI.ChangeHealth(-dame);
+            }
+            else if (enemyShoot != null)
+            {
+                enemyShoot.ChangeHealth(-dame);
+            }
+            else if(bossLv4 != null)
+            {
+                bossLv4.ChangeHealth(-dame);
+            }
 
-            enemy.ChangeHealth(-1);
-            
-        }
+            // Hoặc bạn có thể làm việc với các loại enemy khác tại đây
+        
 
         animator.SetTrigger("Explotion");
-        Destroy(gameObject,0.5f);
+        Destroy(gameObject, 0.5f);
     }
+    
 
 }
