@@ -101,7 +101,7 @@ public class NPC : MonoBehaviour
 
     public void NextLine()
     {
-        contButton.SetActive(false);
+        contButton.SetActive(true);
 
         // Nếu đang gõ dở thì hiện nốt luôn
         if (typingCoroutine != null)
@@ -132,18 +132,27 @@ public class NPC : MonoBehaviour
             typingCoroutine = null;
         }
 
-        dialogueText.text = "";
+        if (dialogueText != null)
+            dialogueText.text = "";
+
         index = 0;
-        dialoguePanel.SetActive(false);
+
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(false);
 
         if (playerIsClose && pressEText != null)
-        {
             pressEText.SetActive(true);
-        }
 
-        contButton.SetActive(false);
-        contButton.GetComponent<Button>().onClick.RemoveAllListeners(); // Ngăn gọi nhầm NPC cũ
+        if (contButton != null)
+        {
+            contButton.SetActive(false);
+
+            var btn = contButton.GetComponent<Button>();
+            if (btn != null)
+                btn.onClick.RemoveAllListeners();
+        }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

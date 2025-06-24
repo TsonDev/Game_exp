@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float speed;
     public bool vertical;
     public float changeTime = 3.0f;
+    public int dame;
    /* public AudioClip deathSound;*/
 
     // Private variables
@@ -78,7 +79,7 @@ public class Enemy : MonoBehaviour
 
         if (player != null)
         {
-            player.ChangeHealth(-1);
+            player.ChangeHealth(-dame);
         }
         Projectile projectile = other.gameObject.GetComponent<Projectile>();
         if (projectile != null)

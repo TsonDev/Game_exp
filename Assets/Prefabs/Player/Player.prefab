@@ -376,7 +376,19 @@ MonoBehaviour:
     m_ActionId: 1e35129e-b54b-47d0-9b5e-376d3492c4a1
     m_ActionName: Player/Jump[/Keyboard/upArrow,/Keyboard/w,/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 458144658027728839}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 459911f2-9490-45f2-a7ae-3dbf4539b927
     m_ActionName: Player/Attack[/Keyboard/c,/Mouse/leftButton]
   - m_PersistentCalls:
@@ -395,6 +407,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e2adba4c-4b6b-4c5c-830a-53e3321cad28
     m_ActionName: Player/Attack1[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 458144658027728839}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4a53a003-6f93-482a-942d-4537322d0614
+    m_ActionName: Player/Strike[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -431,7 +459,7 @@ MonoBehaviour:
   MaxWallSpeed: 2
   wallJumpPower: {x: 5, y: 10}
   projectPrefab: {fileID: 3152946123876210589, guid: d07e0e0e0b1ea1843bd8946c69416370, type: 3}
-  maxHealth: 2
+  maxHealth: 100
   costMana: 15
   maxMana: 100
   attackPoint: {fileID: 1963585552195348566}
@@ -441,4 +469,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1048576
   cooldownAttack: 3
-  timeInvincible: 3
+  dashSpeed: 30
+  dashDuration: 0.5
+  dashCooldown: 1
+  maxDashStack: 4
+  dashStackRecoveryTime: 2
+  timeInvincible: 0

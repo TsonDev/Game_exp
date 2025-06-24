@@ -213,7 +213,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!114 &216322706745810579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   firePoint: {fileID: 2547870588669325092}
   fireRate: 1
   bulletSpeed: 30
-  detectRange: 20
+  detectRange: 5
   moveSpeed: 2
   patrolRange: 10
   maxHealth: 5
